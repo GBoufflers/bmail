@@ -16,7 +16,7 @@
 #include	<fstream>
 #include	<algorithm>
 #include	<vector>
-
+#include	<sstream>
 #include	"ICore.hh"
 
 class		Core: public ICore
