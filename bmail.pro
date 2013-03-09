@@ -8,7 +8,7 @@ DEPENDPATH += . src headers
 INCLUDEPATH += . src headers
 
 # Input
+
 HEADERS += 
 
-SOURCES += 
-
+SOURCES += src/main.cpp
