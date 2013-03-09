@@ -1,7 +1,7 @@
 #ifndef		__WINDOW_HH__
 #define		__WINDOW_HH__
 
-class		Window
+class		Window : public Core
 {
 
 public:

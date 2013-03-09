@@ -1,7 +1,7 @@
 #ifndef		__PARSE_HH__
 #define		__PARSE_HH__
 
-class		Parse
+class		Parse: public Core
 {
 
 public:

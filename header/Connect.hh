@@ -1,7 +1,7 @@
 #ifndef		__CONNECT_HH__
 #define		__CONNECT_HH__
 
-class		Connect
+class		Connect: public Core
 {
 
 public:
