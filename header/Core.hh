@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 15:22:58 2013 florian dell-aiera
-// Last update Sat Mar  9 20:04:42 2013 florian dell-aiera
+// Last update Sat Mar  9 20:19:58 2013 florian dell-aiera
 //
 
 #ifndef	__CORE_HH__

@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 20:07:42 2013 florian dell-aiera
-// Last update Sat Mar  9 20:09:46 2013 florian dell-aiera
+// Last update Sat Mar  9 20:23:22 2013 florian dell-aiera
 //
 
 #include	"../header/Parse.hh"
@@ -23,7 +23,7 @@ Parse::~Parse()
 
 void				Parse::parsing()
 {
-  std::ifstream			file("../server.conf", std::ios::in);
+  std::ifstream			file("server.conf", std::ios::in);
   std::string			content;
   int				id;
   const std::string		sub_str = ":";
