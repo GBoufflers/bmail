@@ -12,6 +12,8 @@ HEADERS += header/Connect.hh \
            header/Core.hh \
            header/ICore.hh \
            header/Process.hh \
-           header/Window.hh
+           header/Window.hh \
+           header/Parse.hh
+
 SOURCES += src/main.cpp \
            src/Parse.cpp
