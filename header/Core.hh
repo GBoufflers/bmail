@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 15:22:58 2013 florian dell-aiera
-// Last update Sat Mar  9 15:34:13 2013 florian dell-aiera
+// Last update Sat Mar  9 15:39:00 2013 florian dell-aiera
 //
 
 #ifndef	__CORE_HH__
@@ -25,7 +25,7 @@ Class		Core: public ICore
   std::string	_Message;
  public:
   Core();
-  ~Core();
+  virtual	~Core();
   virtual bool	sendMail() const;
   virtual bool	receiveMail();
   virtual bool	deleteMail();
