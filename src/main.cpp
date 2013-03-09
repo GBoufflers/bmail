@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 15:09:19 2013 florian dell-aiera
-// Last update Sat Mar  9 22:18:46 2013 florian dell-aiera
+// Last update Sat Mar  9 22:27:40 2013 florian dell-aiera
 //
 
 #include	"../header/Core.hh"
@@ -18,5 +18,6 @@ int		main()
   Connection	t;
 
   p.parsing();
+  t.connect_serveur();
   return (0);
 }
