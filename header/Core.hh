@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 15:22:58 2013 florian dell-aiera
-// Last update Sat Mar  9 23:33:48 2013 florian dell-aiera
+// Last update Sat Mar  9 23:57:03 2013 florian dell-aiera
 //
 
 #ifndef	__CORE_HH__
@@ -21,6 +21,7 @@
 #include	<netinet/in.h>
 #include	<arpa/inet.h>
 #include	<cstring>
+#include	<sstream>
 #include	"ICore.hh"
 
 class		Core: public ICore

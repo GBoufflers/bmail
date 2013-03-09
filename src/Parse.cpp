@@ -30,10 +30,19 @@ void				Parse::parsing()
       while (getline(fichier, content))
 	{
 	  if (i == 4)
-	    {
-	      // set des attributs
-	      for (std::vector<std::string>::iterator it = infos.begin(); it < infos.end(); it++)
-		std::cout << *it << std::endl;
+            {
+              // set des attributs
+	      std::stringstream         ss;
+              short unsigned int        port;
+
+              ss << infos[3];
+              ss >> port;
+              this->_Login = infos[0];
+              this->_Mdp = infos[1];
+              this->_Ip = infos[2];
+              this->_Port = port;
+              /*for (std::vector<std::string>::iterator it = infos.begin(); it < infos.end(); it++)
+                std::cout << *it << std::endl;*/
 	    }
 	  if ((id = content.find(sub_str, 0)))
 	    {
