@@ -5,13 +5,12 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 20:32:28 2013 florian dell-aiera
-// Last update Sat Mar  9 22:14:25 2013 florian dell-aiera
+// Last update Sat Mar  9 23:50:10 2013 florian dell-aiera
 //
 
 #include	"../header/Connection.hh"
 
-Connection::Connection():
-  _sock(0)
+Connection::Connection()
 {
 
 }
@@ -36,4 +35,15 @@ void	Connection::connect_serveur()
 int	Connection::getError() const
 {
   return (this->_error);
+}
+
+
+SOCKET	Connection::getSocket() const
+{
+  return (this->_sock);
+}
+
+SOCKADDR_IN Connection::getSin() const
+{
+  return (this->_sin);
 }

@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 20:15:50 2013 florian dell-aiera
-// Last update Sat Mar  9 20:18:32 2013 florian dell-aiera
+// Last update Sat Mar  9 22:55:08 2013 florian dell-aiera
 //
 
 #include	"../header/Core.hh"
@@ -36,4 +36,3 @@ bool		Core::deleteMail()
 {
   return (true);
 }
-

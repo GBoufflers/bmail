@@ -5,19 +5,20 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 15:09:19 2013 florian dell-aiera
-// Last update Sat Mar  9 22:27:40 2013 florian dell-aiera
+// Last update Sat Mar  9 23:55:15 2013 florian dell-aiera
 //
 
 #include	"../header/Core.hh"
 #include	"../header/Parse.hh"
 #include	"../header/Connection.hh"
+#include	"../header/Process.hh"
 
 int		main()
 {
   Parse		p;
-  Connection	t;
+  Process	test;
 
   p.parsing();
-  t.connect_serveur();
+  test.receiveMail();
   return (0);
 }

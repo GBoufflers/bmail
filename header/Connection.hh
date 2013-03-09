@@ -1,10 +1,6 @@
 #ifndef		__CONNECTION_HH__
 #define		__CONNECTION_HH__
 
-#include	<sys/types.h>
-#include	<sys/socket.h>
-#include	<netinet/in.h>
-#include	<arpa/inet.h>
 #include	"Core.hh"
 
 typedef int	SOCKET;
@@ -21,6 +17,8 @@ public:
   virtual	~Connection();
   void		connect_serveur();
   int		getError() const;
+  SOCKET	getSocket() const;
+  SOCKADDR_IN	getSin() const;
 };
 
 #endif

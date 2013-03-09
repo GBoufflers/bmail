@@ -5,7 +5,6 @@
 
 class		Parse : public Core
 {
-
 public:
   Parse();
   virtual	~Parse(){};
