@@ -79,7 +79,7 @@ bool	Core::Process::receiveMail(Core	*c)
       	{
 	  write_server(this->p.getSocket(), "USER epitech@dualabs.com\n");
 	  write_server(this->p.getSocket(), "PASS epitech\n");
-	  // write_server(this->p.getSocket(), "retr 2\n");
+	  write_server(this->p.getSocket(), "LIST\n");
 	  // write_server(this->p.getSocket(), "quit\n");
 	  while (1)
 	    {
