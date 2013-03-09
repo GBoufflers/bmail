@@ -17,4 +17,5 @@ HEADERS += header/Connect.hh \
 
 SOURCES += src/main.cpp \
            src/Parse.cpp \
-           src/Core.cpp 
+           src/Core.cpp \
+           src/Connection.cpp
