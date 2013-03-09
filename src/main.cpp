@@ -5,13 +5,16 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 15:09:19 2013 florian dell-aiera
-// Last update Sat Mar  9 16:09:54 2013 florian dell-aiera
+// Last update Sat Mar  9 20:07:22 2013 florian dell-aiera
 //
 
-
 #include	"../header/Core.hh"
+#include	"../header/Parse.hh"
 
 int		main()
 {
+  Parse		file;
+
+  file.parsing();
   return (0);
 }

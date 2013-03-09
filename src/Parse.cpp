@@ -1,12 +1,15 @@
-#include	"Parse.hh"
+//
+// Parse.cpp for rush in /home/dell-a_f//projets/bmail/src
+// 
+// Made by florian dell-aiera
+// Login   <dell-a_f@epitech.net>
+// 
+// Started on  Sat Mar  9 20:07:42 2013 florian dell-aiera
+// Last update Sat Mar  9 20:09:46 2013 florian dell-aiera
+//
 
+#include	"../header/Parse.hh"
 
-/*inclure <fstream>
-#include	<iostream>
-#include	<string>
-#include	<fstream>
-#include	<algorithm>
-#include	<vector>*/
 
 Parse::Parse()
 {
@@ -18,21 +21,14 @@ Parse::~Parse()
 
 }
 
-void	Parse::parsing()
+void				Parse::parsing()
 {
-std::ifstream			file("server.conf", std::ios::in);
-  
+  std::ifstream			file("../server.conf", std::ios::in);
   std::string			content;
   int				id;
   const std::string		sub_str = ":";
   std::vector<std::string>	infos;
-  /*
-   *	USER
-   *	PASS
-   *	IP
-   *	HOST
-   */
-  int		i = 0;
+  int				i = 0;
   
   if (file)
     {
@@ -44,7 +40,7 @@ std::ifstream			file("server.conf", std::ios::in);
 	      for (std::vector<std::string>::iterator it = infos.begin(); it < infos.end(); it++)
 		std::cout << *it << std::endl;
 	    }
-	  if (id = content.find(sub_str, 0))
+	  if ((id = content.find(sub_str, 0)))
 	    {
 	      id+=2;
 	      infos.push_back(content.substr(id, content.size()));
