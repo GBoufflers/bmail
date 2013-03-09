@@ -11,13 +11,12 @@
 #ifndef	__CORE_HH__
 #define	__CORE_HH__
 
-
-#include	<fstream>
 #include	<iostream>
 #include	<string>
+#include	<fstream>
 #include	<algorithm>
 #include	<vector>
-#include	<string>
+
 #include	"ICore.hh"
 
 class		Core: public ICore

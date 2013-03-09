@@ -3,12 +3,12 @@
 
 #include	"Core.hh"
 
-class		Parse: public Core
+class		Parse : public Core
 {
 
 public:
   Parse();
-  virtual	~Parse();
+  virtual	~Parse(){};
   void		parsing();
 
 };

@@ -14,8 +14,8 @@
 
 int		main()
 {
-  Parse		file;
+  Parse		p;
 
-  file.parsing();
+  p.parsing();
   return (0);
 }
