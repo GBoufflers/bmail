@@ -1,44 +1,34 @@
-//
-// Process.cpp for Process in /home/dell-a_f/projets/bmail
-// 
-// Made by florian dell-aiera
-// Login   <dell-a_f@epitech.net>
-// 
-// Started on  Sat Mar  9 22:31:32 2013 florian dell-aiera
-// Last update Sun Mar 10 00:07:38 2013 florian dell-aiera
-//
+#include	"../headers/Core.hh"
 
-#include	"../header/Process.hh"
-
-Process::Process()
+Core::Process::Process()
 {
 
 }
 
-Process::~Process()
+Core::Process::~Process()
 {
 
 }
 
-bool	Process::sendMail()
+bool	Core::Process::sendMail()
 {
   return (true);
 }
 
-bool	Process::receiveMail()
+bool	Core::Process::receiveMail(Core	*c)
 {
   fd_set	rd;
   int		i;
 
-  this->p.connect_serveur();
+  this->p.connect_serveur(c);
   if (this->p.getError() != -1)
     {
-      // if (this->_Port == 110)
-      // 	{
+      if (c->getPort() == 110)
+      	{
 	  write_server(this->p.getSocket(), "USER epitech@dualabs.com\n");
 	  write_server(this->p.getSocket(), "PASS epitech\n");
-	  write_server(this->p.getSocket(), "retr 2\n");
-	  write_server(this->p.getSocket(), "quit\n");
+	  // write_server(this->p.getSocket(), "retr 2\n");
+	  // write_server(this->p.getSocket(), "quit\n");
 	  while (1)
 	    {
 	      FD_ZERO(&rd);
@@ -60,17 +50,17 @@ bool	Process::receiveMail()
 		}
 	    }
 	  close(this->p.getSocket());
-	  //	}
+	}
     }
   return (true);
 }
 
-bool	Process::deleteMail()
+bool	Core::Process::deleteMail()
 {
   return (true);
 }
 
-int	Process::read_server(SOCKET sock, char *buffer)
+int	Core::Process::read_server(SOCKET sock, char *buffer)
 {
   int	n = 0;
 
@@ -83,7 +73,7 @@ int	Process::read_server(SOCKET sock, char *buffer)
   return (n);
 }
 
-void	Process::write_server(SOCKET sock, const char *buffer)
+void	Core::Process::write_server(SOCKET sock, const char *buffer)
 {
   if (send(sock, buffer, strlen(buffer), 0) < 0)
     {

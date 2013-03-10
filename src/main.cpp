@@ -1,24 +1,22 @@
 //
-// main.cpp for rush in /home/dell-a_f//projets/bmail/src
+// main.cpp for lo in /home/dell-a_f//projets/suicide/src
 // 
 // Made by florian dell-aiera
 // Login   <dell-a_f@epitech.net>
 // 
-// Started on  Sat Mar  9 15:09:19 2013 florian dell-aiera
-// Last update Sat Mar  9 23:55:15 2013 florian dell-aiera
+// Started on  Sun Mar 10 10:52:50 2013 florian dell-aiera
+// Last update Sun Mar 10 11:33:34 2013 florian dell-aiera
 //
 
-#include	"../header/Core.hh"
-#include	"../header/Parse.hh"
-#include	"../header/Connection.hh"
-#include	"../header/Process.hh"
+
+#include	"../headers/Core.hh"
 
 int		main()
 {
-  Parse		p;
-  Process	test;
+  Core		c;
+  int		tamere;
 
-  p.parsing();
-  test.receiveMail();
+  c.parsing_core();
+  c.receiveMail();
   return (0);
 }

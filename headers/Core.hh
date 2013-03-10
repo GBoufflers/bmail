@@ -1,15 +1,16 @@
 //
-// Core.hh for core in /home/dell-a_f//projets/bmail
+// Core.hh for rush in /home/dell-a_f//projets/suicide
 // 
 // Made by florian dell-aiera
 // Login   <dell-a_f@epitech.net>
 // 
-// Started on  Sat Mar  9 15:22:58 2013 florian dell-aiera
-// Last update Sat Mar  9 23:57:03 2013 florian dell-aiera
+// Started on  Sun Mar 10 10:47:44 2013 florian dell-aiera
+// Last update Sun Mar 10 11:43:52 2013 florian dell-aiera
 //
 
 #ifndef	__CORE_HH__
 #define	__CORE_HH__
+
 
 #include	<iostream>
 #include	<string>
@@ -25,9 +26,49 @@
 #include	<unistd.h>
 #include	"ICore.hh"
 
+typedef int	SOCKET;
+typedef struct	sockaddr_in SOCKADDR_IN;
+typedef struct	sockaddr SOCKADDR;
+
+#define		SIZE 4096
+
 class		Core: public ICore
 {
- protected:
+  class		Connection
+  {
+    SOCKET	_sock;
+    SOCKADDR_IN	_sin;
+    int		_error;
+  public:
+    Connection();
+    virtual	~Connection();
+    void	connect_serveur(Core *c);
+    int		getError() const;
+    SOCKET	getSocket() const;
+    SOCKADDR_IN	getSin() const;
+  };
+  class	Process
+  {
+  private:
+    Connection		p;
+    char		buffer[SIZE];
+  public:
+    Process();
+    virtual		~Process();
+    virtual bool	sendMail();
+    virtual bool	receiveMail(Core *c);
+    virtual bool	deleteMail();
+    int			read_server(SOCKET sock, char *buffer);
+    void		write_server(SOCKET sock, const char *buffer);
+  };
+
+  class Parse
+  {
+  public:
+    Parse();
+    virtual	~Parse(){};
+    void       	parsing(Core *c); 
+  };  
   std::string		_Login;
   std::string		_Mdp;
   std::string		_Ip;
@@ -35,7 +76,10 @@ class		Core: public ICore
   std::string		_Dest;
   std::string		_Objet;
   std::string		_Message;
- public:
+  Parse			_parser;
+  Process		_process;
+  //  Connection		_connect;
+public:
   Core();
   virtual		~Core();
   virtual bool		sendMail() const;
@@ -55,7 +99,7 @@ class		Core: public ICore
   std::string		getDest() const {return(this->_Dest);}
   std::string		getObjet() const {return(this->_Objet);}
   std::string		getMessage() const {return(this->_Message);}
+  void			parsing_core();
 };
-
 
 #endif
