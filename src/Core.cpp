@@ -21,13 +21,13 @@ Core::~Core()
 {
 }
 
-bool	Core::sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text)
+bool	Core::sendMail(Core *core, const std::string &addr, const unsigned short port, const std::string &From, const std::string &To, const std::string &Subject, const std::string &Text)
 {
   core->_process.sendMail(addr, port, From, To, Subject, Text);
   return (true);
 }
 
-void	display(std::string e)
+void	display(const std::string &e)
 {
   std::cout << e << std::endl;
 }
@@ -43,7 +43,7 @@ bool	Core::receiveMail()
   return (true);
 }
 
-bool	Core::deleteMail()
+bool	Core::deleteMail() const
 {
   return (true);
 }

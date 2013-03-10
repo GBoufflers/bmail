@@ -31,9 +31,13 @@ void		MainWindow::AddRow()
   box->addRow(msgenvoi);
 }
 
-void		MainWindow::sendmsg()
+void		MainWindow::sendmsg() const
 {
   core->sendMail(core, Ip->text().toStdString(), 25, From->text().toStdString(), rec->text().toStdString(), obj->text().toStdString(), msg->toPlainText().toStdString());
+  this->From->setText("");
+  this->rec->setText("");
+  this->obj->setText("");
+  this->msg->setText("");
 }
 
 MainWindow::MainWindow(Core *c) : QWidget()

@@ -62,14 +62,14 @@ class		Core: public ICore
   public:
     Process();
     virtual		~Process();
-    virtual bool	sendMail(const std::string addr, const unsigned short port, const std::string From, const std::string To, const std::string Subject, const std::string Text);
+    virtual bool	sendMail(const std::string &addr, const unsigned short port, const std::string &From, const std::string &To, const std::string &Subject, const std::string &Text);
     virtual bool	receiveMail(Core *c);
     virtual bool	deleteMail() const;
-    int			read_server(const SOCKET sock, char *buffer) const;
-    void		write_server(const SOCKET sock, const char *buffer) const;
+    int			read_server(const SOCKET &sock, char *buffer) const;
+    void		write_server(const SOCKET &sock, const char *buffer) const;
     bool		helo(char buff[1024]) const;
-    bool		peoples(char buff[1024], const std::string From, const std::string To) const;
-    bool		data(char buff[1024], const std::string Subject, const std::string Text);
+    bool		peoples(char buff[1024], const std::string &From, const std::string &To) const;
+    bool		data(char buff[1024], const std::string &Subject, const std::string &Text);
     int				nbr_mail(char *buffer) const;
     std::list<std::string>	getMail() const;
   };
@@ -94,9 +94,9 @@ private:
 public:
   Core();
   virtual		~Core();
-  virtual bool		sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text);
+  virtual bool		sendMail(Core *core, const std::string &addr, const unsigned short port, const std::string &From, const std::string &To, const std::string &Subject, const std::string &Text);
   virtual bool		receiveMail();
-  virtual bool		deleteMail();
+  virtual bool		deleteMail() const;
   void			setLogin(const std::string &login) {this->_Login = login;}
   void			setMdp(const std::string &mdp) {this->_Mdp = mdp;}
   void			setIp(const std::string &ip) {this->_Ip = ip;}

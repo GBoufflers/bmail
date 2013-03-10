@@ -18,7 +18,7 @@ bool	Core::Process::helo(char buff[1024]) const
   return (true);
 }
 
-bool	Core::Process::peoples(char buff[1024], const std::string From, const std::string To) const
+bool	Core::Process::peoples(char buff[1024], const std::string &From, const std::string &To) const
 {
   std::string	f;
   std::string	t;
@@ -38,7 +38,7 @@ bool	Core::Process::peoples(char buff[1024], const std::string From, const std::
   return (true);
 }
 
-bool	Core::Process::data(char buff[1024], const std::string Subject, const std::string Text)
+bool	Core::Process::data(char buff[1024], const std::string &Subject, const std::string &Text)
 {
   std::string	t;
   std::string	s;
@@ -59,7 +59,7 @@ bool	Core::Process::data(char buff[1024], const std::string Subject, const std::
   return (true);
 }
 
-bool	Core::Process::sendMail(const std::string addr, const unsigned short port, const std::string From, const std::string To, const std::string Subject, const std::string Text)
+bool	Core::Process::sendMail(const std::string &addr, const unsigned short port, const std::string &From, const std::string &To, const std::string &Subject, const std::string &Text)
 {
   char	buff[1024];
 
@@ -154,7 +154,7 @@ bool	Core::Process::deleteMail() const
   return (true);
 }
 
-int	Core::Process::read_server(const SOCKET sock, char *buffer) const
+int	Core::Process::read_server(const SOCKET &sock, char *buffer) const
 {
   int	n = 0;
 
@@ -169,7 +169,7 @@ int	Core::Process::read_server(const SOCKET sock, char *buffer) const
   return (n);
 }
 
-void	Core::Process::write_server(const SOCKET sock, const char *buffer) const
+void	Core::Process::write_server(const SOCKET &sock, const char *buffer) const
 {
   if (send(sock, buffer, strlen(buffer), 0) < 0)
     {

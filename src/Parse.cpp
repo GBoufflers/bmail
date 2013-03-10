@@ -38,7 +38,6 @@ void				Core::Parse::parsing(Core *c)
 	}
       if (i == 4)
 	{
-	  // set des attributs
 	  std::stringstream         ss;
 	  short unsigned int        port;
 	  
@@ -48,8 +47,6 @@ void				Core::Parse::parsing(Core *c)
 	  c->setMdp(infos[1]);
 	  c->setIp(infos[2]);
 	  c->setPort(port);
-	  /*for (std::vector<std::string>::iterator it = infos.begin(); it < infos.end(); it++)
-	    std::cout << *it << std::endl;*/
 	}
       fichier.close();
     }

@@ -16,7 +16,7 @@ class		MainWindow : public QWidget
   void	  AddRow();
 
 private slots:
-  void	sendmsg();
+  void	sendmsg() const;
 
 private:
   Core		*core;
