@@ -25,7 +25,6 @@ void	Core::Connection::connect_serveur(Core *c)
 {
   
   this->_sock = socket(AF_INET, SOCK_STREAM, 0);
-  //  this->_sin.sin_addr.s_addr = inet_addr("5.135.158.198");
   this->_sin.sin_addr.s_addr = inet_addr(c->getIp().c_str());
   this->_sin.sin_family = AF_INET;
   this->_sin.sin_port = htons(c->getPort());

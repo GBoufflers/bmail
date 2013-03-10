@@ -36,6 +36,7 @@ typedef struct	sockaddr SOCKADDR;
 
 class		Core: public ICore
 {
+
   class		Connection
   {
     SOCKET	_sock;
@@ -49,6 +50,7 @@ class		Core: public ICore
     SOCKET	getSocket() const;
     SOCKADDR_IN	getSin() const;
   };
+
   class	Process
   {
   private:
@@ -60,15 +62,15 @@ class		Core: public ICore
   public:
     Process();
     virtual		~Process();
-    virtual bool	sendMail(std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text);
+    virtual bool	sendMail(const std::string addr, const unsigned short port, const std::string From, const std::string To, const std::string Subject, const std::string Text);
     virtual bool	receiveMail(Core *c);
-    virtual bool	deleteMail();
-    int			read_server(SOCKET sock, char *buffer);
-    void		write_server(SOCKET sock, const char *buffer);
-    bool		helo(char buff[1024]);
-    bool		peoples(char buff[1024], std::string From, std::string To);
-    bool		data(char buff[1024], std::string Subject, std::string Text);
-    int				nbr_mail(char *buffer);
+    virtual bool	deleteMail() const;
+    int			read_server(const SOCKET sock, char *buffer) const;
+    void		write_server(const SOCKET sock, const char *buffer) const;
+    bool		helo(char buff[1024]) const;
+    bool		peoples(char buff[1024], const std::string From, const std::string To) const;
+    bool		data(char buff[1024], const std::string Subject, const std::string Text);
+    int				nbr_mail(char *buffer) const;
     std::list<std::string>	getMail() const;
   };
 
@@ -78,8 +80,8 @@ class		Core: public ICore
     Parse();
     virtual	~Parse(){};
     void       	parsing(Core *c); 
-  };  
-
+  };
+private:
   std::string		_Login;
   std::string		_Mdp;
   std::string		_Ip;
@@ -92,7 +94,7 @@ class		Core: public ICore
 public:
   Core();
   virtual		~Core();
-  virtual bool		sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text) const;
+  virtual bool		sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text);
   virtual bool		receiveMail();
   virtual bool		deleteMail();
   void			setLogin(const std::string &login) {this->_Login = login;}

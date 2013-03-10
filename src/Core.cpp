@@ -21,7 +21,7 @@ Core::~Core()
 {
 }
 
-bool	Core::sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text) const
+bool	Core::sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text)
 {
   core->_process.sendMail(addr, port, From, To, Subject, Text);
   return (true);
