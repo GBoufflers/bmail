@@ -12,6 +12,58 @@ Core::Process::~Process()
 
 bool	Core::Process::sendMail()
 {
+  char		*bitch;
+  char		buff[1024];
+
+  if(!erreur)
+    {
+      /* Création de la socket */
+      sock = socket(AF_INET, SOCK_STREAM, 0);
+      /* Configuration de la connexion */
+      sin.sin_addr.s_addr = inet_addr("10.42.1.60");
+      sin.sin_family = AF_INET;
+      sin.sin_port = htons(PORT);
+      /* Si le client arrive à se connecter */
+      if(connect(sock, (SOCKADDR*)&sin, sizeof(sin)) != SOCKET_ERROR)
+        {
+          printf("Connexion à %s sur le port %d\n", inet_ntoa(sin.sin_addr), htons(sin.sin_port));
+          //                                                                                                                                                                                                                                                                                                                  
+          send(sock, "HELO CLIENT\n", 12, 0);
+          recv(sock, buff, 1024, 0);
+          printf("helo = %s", buff);
+          //                                                                                                                                                                                                                                                                                                                  
+          bitch = strdup("MAIL FROM: <guillaume.boufflers@epitech.eu>\n");
+          send(sock, bitch, strlen(bitch), 0);
+          recv(sock, buff, 1024, 0);
+          printf("mail from = %s", buff);
+          //                                                                                                                                                                                                                                                                                                                  
+          bitch = strdup("RCPT TO: <guillaume.boufflers@epitech.eu>\n");
+          send(sock, bitch, strlen(bitch), 0);
+          recv(sock, buff, 1024, 0);
+          printf("rcpt to = %s", buff);
+          //                                                                                                                                                                                                                                                                                                                  
+          bitch = strdup("DATA\n");
+          send(sock, bitch, strlen(bitch), 0);
+          recv(sock, buff, 1024, 0);
+          printf("data = %s", buff);
+          //                                                                                                                                                                                                                                                                                                                  
+          bitch = strdup("\n");
+          send(sock, bitch, strlen(bitch), 0);
+          recv(sock, buff, 1024, 0);
+          printf("data = %s", buff);
+          //                                                                                                                                                                                                                                                                                                                  
+          bitch = strdup("bonjour !!\n.\n");
+          send(sock, bitch, strlen(bitch), 0);
+          recv(sock, buff, 1024, 0);
+          printf("data = %s", buff);
+        }
+      else
+        printf("Impossible de se connecter\n");
+      /* On ferme la socket précédemment ouverte */
+      closesocket(sock);
+    }
+  return EXIT_SUCCESS;
+
   return (true);
 }
 
