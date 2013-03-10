@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 20:32:28 2013 florian dell-aiera
-// Last update Sat Mar  9 23:50:10 2013 florian dell-aiera
+// Last update Sun Mar 10 00:03:44 2013 florian dell-aiera
 //
 
 #include	"../header/Connection.hh"
@@ -23,9 +23,10 @@ Connection::~Connection()
 void	Connection::connect_serveur()
 {
   this->_sock = socket(AF_INET, SOCK_STREAM, 0);
-  this->_sin.sin_addr.s_addr = inet_addr(this->_Ip.c_str());
+  this->_sin.sin_addr.s_addr = inet_addr("5.135.158.198");
+  //this->_sin.sin_addr.s_addr = inet_addr(this->_Ip.c_str());
   this->_sin.sin_family = AF_INET;
-  this->_sin.sin_port = htons(this->_Port);
+  this->_sin.sin_port = htons(110);
   if (connect(this->_sock, (SOCKADDR*)&(this->_sin), sizeof(this->_sin)) != -1)
     this->_error = 0;
   else

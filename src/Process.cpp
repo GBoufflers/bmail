@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sat Mar  9 22:31:32 2013 florian dell-aiera
-// Last update Sat Mar  9 23:54:06 2013 florian dell-aiera
+// Last update Sun Mar 10 00:07:38 2013 florian dell-aiera
 //
 
 #include	"../header/Process.hh"
@@ -33,8 +33,8 @@ bool	Process::receiveMail()
   this->p.connect_serveur();
   if (this->p.getError() != -1)
     {
-      if (this->_Port == 110)
-	{
+      // if (this->_Port == 110)
+      // 	{
 	  write_server(this->p.getSocket(), "USER epitech@dualabs.com\n");
 	  write_server(this->p.getSocket(), "PASS epitech\n");
 	  write_server(this->p.getSocket(), "retr 2\n");
@@ -60,7 +60,7 @@ bool	Process::receiveMail()
 		}
 	    }
 	  close(this->p.getSocket());
-	}
+	  //	}
     }
   return (true);
 }
