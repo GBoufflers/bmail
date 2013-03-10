@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sun Mar 10 10:47:44 2013 florian dell-aiera
-// Last update Sun Mar 10 11:43:52 2013 florian dell-aiera
+// Last update Sun Mar 10 18:11:36 2013 florian dell-aiera
 //
 
 #ifndef	__CORE_HH__
@@ -16,7 +16,6 @@
 #include	<string>
 #include	<fstream>
 #include	<algorithm>
-#include	<vector>
 #include	<sys/types.h>
 #include	<sys/socket.h>
 #include	<netinet/in.h>
@@ -24,6 +23,9 @@
 #include	<cstring>
 #include	<sstream>
 #include	<unistd.h>
+#include	<vector>
+#include	<list>
+#include	<algorithm>
 #include	"ICore.hh"
 
 typedef int	SOCKET;
@@ -54,10 +56,11 @@ class		Core: public ICore
     SOCKADDR_IN		_ssin;
     Connection		p;
     char		buffer[SIZE];
+    std::list<std::string>	mail;
   public:
     Process();
     virtual		~Process();
-    virtual bool	sendMail(Core *c, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text);
+    virtual bool	sendMail(std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text);
     virtual bool	receiveMail(Core *c);
     virtual bool	deleteMail();
     int			read_server(SOCKET sock, char *buffer);
@@ -65,6 +68,8 @@ class		Core: public ICore
     bool		helo(char buff[1024]);
     bool		peoples(char buff[1024], std::string From, std::string To);
     bool		data(char buff[1024], std::string Subject, std::string Text);
+    int				nbr_mail(char *buffer);
+    std::list<std::string>	getMail() const;
   };
 
   class Parse

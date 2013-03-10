@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sun Mar 10 10:50:33 2013 florian dell-aiera
-// Last update Sun Mar 10 11:44:39 2013 florian dell-aiera
+// Last update Sun Mar 10 18:11:47 2013 florian dell-aiera
 //
 
 
@@ -23,14 +23,23 @@ Core::~Core()
 
 bool	Core::sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text) const
 {
-  core->_process.sendMail(core, addr, port, From, To, Subject, Text);
+  core->_process.sendMail(addr, port, From, To, Subject, Text);
   return (true);
+}
+
+void	display(std::string e)
+{
+  std::cout << e << std::endl;
 }
 
 bool	Core::receiveMail()
 {
-  //  this->_connect.connect_serveur(this);
+  std::list<std::string>	tmp;
+
   this->_process.receiveMail(this);
+  tmp = this->_process.getMail();
+  std::cout << "mylist contains:";
+  for_each(tmp.begin(), tmp.end(), display);
   return (true);
 }
 
