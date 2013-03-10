@@ -50,16 +50,21 @@ class		Core: public ICore
   class	Process
   {
   private:
+    SOCKET		_ssock;
+    SOCKADDR_IN		_ssin;
     Connection		p;
     char		buffer[SIZE];
   public:
     Process();
     virtual		~Process();
-    virtual bool	sendMail();
+    virtual bool	sendMail(Core *c, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text);
     virtual bool	receiveMail(Core *c);
     virtual bool	deleteMail();
     int			read_server(SOCKET sock, char *buffer);
     void		write_server(SOCKET sock, const char *buffer);
+    bool		helo(char buff[1024]);
+    bool		peoples(char buff[1024], std::string From, std::string To);
+    bool		data(char buff[1024], std::string Subject, std::string Text);
   };
 
   class Parse
@@ -69,6 +74,7 @@ class		Core: public ICore
     virtual	~Parse(){};
     void       	parsing(Core *c); 
   };  
+
   std::string		_Login;
   std::string		_Mdp;
   std::string		_Ip;
@@ -78,11 +84,10 @@ class		Core: public ICore
   std::string		_Message;
   Parse			_parser;
   Process		_process;
-  //  Connection		_connect;
 public:
   Core();
   virtual		~Core();
-  virtual bool		sendMail() const;
+  virtual bool		sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text) const;
   virtual bool		receiveMail();
   virtual bool		deleteMail();
   void			setLogin(const std::string &login) {this->_Login = login;}

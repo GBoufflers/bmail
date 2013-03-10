@@ -8,15 +8,18 @@
 // Last update Sun Mar 10 11:33:34 2013 florian dell-aiera
 //
 
-
+#include	<QtGui>
+#include	<QApplication>
+#include	"MainWindow.hh"
 #include	"../headers/Core.hh"
 
-int		main()
+int		main(int ac, char **av)
 {
-  Core		c;
-  int		tamere;
+  QApplication	app(ac, av);
+  Core		*c;
 
-  c.parsing_core();
-  c.receiveMail();
-  return (0);
+  c = new Core();
+  MainWindow	*window = new MainWindow(c);
+  window->show();
+  return app.exec();
 }

@@ -10,61 +10,77 @@ Core::Process::~Process()
 
 }
 
-bool	Core::Process::sendMail()
+bool	Core::Process::helo(char buff[1024])
 {
-  char		*bitch;
-  char		buff[1024];
+  char *bitch;
 
-  if(!erreur)
-    {
-      /* Création de la socket */
-      sock = socket(AF_INET, SOCK_STREAM, 0);
-      /* Configuration de la connexion */
-      sin.sin_addr.s_addr = inet_addr("10.42.1.60");
-      sin.sin_family = AF_INET;
-      sin.sin_port = htons(PORT);
-      /* Si le client arrive à se connecter */
-      if(connect(sock, (SOCKADDR*)&sin, sizeof(sin)) != SOCKET_ERROR)
-        {
-          printf("Connexion à %s sur le port %d\n", inet_ntoa(sin.sin_addr), htons(sin.sin_port));
-          //                                                                                                                                                                                                                                                                                                                  
-          send(sock, "HELO CLIENT\n", 12, 0);
-          recv(sock, buff, 1024, 0);
-          printf("helo = %s", buff);
-          //                                                                                                                                                                                                                                                                                                                  
-          bitch = strdup("MAIL FROM: <guillaume.boufflers@epitech.eu>\n");
-          send(sock, bitch, strlen(bitch), 0);
-          recv(sock, buff, 1024, 0);
-          printf("mail from = %s", buff);
-          //                                                                                                                                                                                                                                                                                                                  
-          bitch = strdup("RCPT TO: <guillaume.boufflers@epitech.eu>\n");
-          send(sock, bitch, strlen(bitch), 0);
-          recv(sock, buff, 1024, 0);
-          printf("rcpt to = %s", buff);
-          //                                                                                                                                                                                                                                                                                                                  
-          bitch = strdup("DATA\n");
-          send(sock, bitch, strlen(bitch), 0);
-          recv(sock, buff, 1024, 0);
-          printf("data = %s", buff);
-          //                                                                                                                                                                                                                                                                                                                  
-          bitch = strdup("\n");
-          send(sock, bitch, strlen(bitch), 0);
-          recv(sock, buff, 1024, 0);
-          printf("data = %s", buff);
-          //                                                                                                                                                                                                                                                                                                                  
-          bitch = strdup("bonjour !!\n.\n");
-          send(sock, bitch, strlen(bitch), 0);
-          recv(sock, buff, 1024, 0);
-          printf("data = %s", buff);
-        }
-      else
-        printf("Impossible de se connecter\n");
-      /* On ferme la socket précédemment ouverte */
-      closesocket(sock);
-    }
-  return EXIT_SUCCESS;
-
+  send(this->_ssock, "HELO CLIENT\n", 12, 0);
+  recv(this->_ssock, buff, 1024, 0);
+  bzero(buff, 1024);
   return (true);
+}
+
+bool	Core::Process::peoples(char buff[1024], std::string From, std::string To)
+{
+  std::string	f;
+  std::string	t;
+
+  f = f + "MAIL FROM: <";
+  f = f + From;
+  f = f + ">\n";
+  t = t + "RCPT TO: <";
+  t = t + To;
+  t = t + ">\n";
+  std::cout << f << std::endl;
+  std::cout << t << std::endl;
+  send(this->_ssock, f.c_str(), f.size(), 0);
+  recv(this->_ssock, buff, 1024, 0);
+  bzero(buff, 1024);
+  send(this->_ssock, t.c_str(), t.size(), 0);
+  recv(this->_ssock, buff, 1024, 0);
+  bzero(buff, 1024);
+  return (true);
+}
+
+bool	Core::Process::data(char buff[1024], std::string Subject, std::string Text)
+{
+  std::string	t;
+  std::string	s;
+
+  s = "Subject: ";
+  s = s + Subject;
+  s = s + "\n";
+  send(this->_ssock, "DATA\n", 5, 0);
+  recv(this->_ssock, buff, 1024, 0);
+  bzero(buff, 1024);
+  send(this->_ssock, s.c_str(), s.size(), 0);
+  recv(this->_ssock, buff, 1024, 0);
+  bzero(buff, 1024);
+  t = Text + "\n.\n";
+  send(this->_ssock, t.c_str(), t.size(), 0);
+  recv(this->_ssock, buff, 1024, 0);
+  bzero(buff, 1024);
+  return (true);
+}
+
+bool	Core::Process::sendMail(Core *c, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text)
+{
+  char	buff[1024];
+
+  bzero(buff, 1024);
+  this->_ssock = socket(AF_INET, SOCK_STREAM, 0);  
+  this->_ssin.sin_addr.s_addr = inet_addr(addr.c_str());
+  this->_ssin.sin_family = AF_INET;
+  this->_ssin.sin_port = htons(port);
+  if(connect(this->_ssock, (SOCKADDR*)&this->_ssin, sizeof(this->_ssin)) != -1)
+    {
+      this->helo(buff);
+      this->peoples(buff, From, To);
+      this->data(buff, Subject, Text);
+      return (true);
+    }
+  else
+    return (false);
 }
 
 bool	Core::Process::receiveMail(Core	*c)
@@ -76,7 +92,7 @@ bool	Core::Process::receiveMail(Core	*c)
   if (this->p.getError() != -1)
     {
       if (c->getPort() == 110)
-      	{
+	{
 	  write_server(this->p.getSocket(), "USER epitech@dualabs.com\n");
 	  write_server(this->p.getSocket(), "PASS epitech\n");
 	  write_server(this->p.getSocket(), "LIST\n");
@@ -107,10 +123,10 @@ bool	Core::Process::receiveMail(Core	*c)
   return (true);
 }
 
-bool	Core::Process::deleteMail()
-{
-  return (true);
-}
+  bool	Core::Process::deleteMail()
+  {
+    return (true);
+  }
 
 int	Core::Process::read_server(SOCKET sock, char *buffer)
 {

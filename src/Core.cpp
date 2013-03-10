@@ -19,11 +19,11 @@ Core::Core()
 
 Core::~Core()
 {
-
 }
 
-bool	Core::sendMail() const
+bool	Core::sendMail(Core *core, std::string addr, unsigned short port, std::string From, std::string To, std::string Subject, std::string Text) const
 {
+  core->_process.sendMail(core, addr, port, From, To, Subject, Text);
   return (true);
 }
 
