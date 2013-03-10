@@ -5,7 +5,7 @@
 ## Login   <dell-a_f@epitech.net>
 ## 
 ## Started on  Sun Mar 10 13:21:40 2013 florian dell-aiera
-## Last update Sun Mar 10 13:27:28 2013 florian dell-aiera
+## Last update Sun Mar 10 13:36:06 2013 florian dell-aiera
 ##
 
 NAME=	bmail
@@ -18,7 +18,7 @@ SRC=	src/main.cpp \
 
 OBJ=	$(SRC:.cpp=.o)
 
-CFLAGS=	-g
+CFLAGS = -g
 
 all:	$(NAME)
 

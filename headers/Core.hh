@@ -5,7 +5,7 @@
 // Login   <dell-a_f@epitech.net>
 // 
 // Started on  Sun Mar 10 10:47:44 2013 florian dell-aiera
-// Last update Sun Mar 10 11:43:52 2013 florian dell-aiera
+// Last update Sun Mar 10 18:11:36 2013 florian dell-aiera
 //
 
 #ifndef	__CORE_HH__
@@ -16,7 +16,6 @@
 #include	<string>
 #include	<fstream>
 #include	<algorithm>
-#include	<vector>
 #include	<sys/types.h>
 #include	<sys/socket.h>
 #include	<netinet/in.h>
@@ -24,6 +23,9 @@
 #include	<cstring>
 #include	<sstream>
 #include	<unistd.h>
+#include	<vector>
+#include	<list>
+#include	<algorithm>
 #include	"ICore.hh"
 
 typedef int	SOCKET;
@@ -50,16 +52,19 @@ class		Core: public ICore
   class	Process
   {
   private:
-    Connection		p;
-    char		buffer[SIZE];
+    Connection			p;
+    char			buffer[SIZE];
+    std::list<std::string>	mail;
   public:
     Process();
-    virtual		~Process();
-    virtual bool	sendMail();
-    virtual bool	receiveMail(Core *c);
-    virtual bool	deleteMail();
-    int			read_server(SOCKET sock, char *buffer);
-    void		write_server(SOCKET sock, const char *buffer);
+    virtual			~Process();
+    virtual bool		sendMail();
+    virtual bool		receiveMail(Core *c);
+    virtual bool		deleteMail();
+    int				read_server(SOCKET sock, char *buffer);
+    void			write_server(SOCKET sock, const char *buffer);
+    int				nbr_mail(char *buffer);
+    std::list<std::string>	getMail() const;
   };
 
   class Parse
@@ -78,7 +83,6 @@ class		Core: public ICore
   std::string		_Message;
   Parse			_parser;
   Process		_process;
-  //  Connection		_connect;
 public:
   Core();
   virtual		~Core();
